@@ -222,7 +222,8 @@ def usbinfo():
         # For each interface, we want to capture more information
         for child in node.get('IORegistryEntryChildren', []):
             if (child.get('IOUserClientClass') == 'IOUSBInterfaceUserClientV3'
-                    or child.get('IOObjectClass') == 'IOUSBInterface'):
+                    or child.get('IOObjectClass') == 'IOUSBInterface'
+                    or (OSX_VERSION_MINOR_INT >= 15 and child.get('IOObjectClass') == 'AppleUSBInterface')):
 
                 ifinfo = copy.copy(devinfo)
 
